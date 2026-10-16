@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 AI 트렌드 & 연구 동향 리포트</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts: Inter & Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans KR"', 'Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
+            },
+            accent: {
+              cyan: '#06b6d4',
+              emerald: '#10b981',
+              violet: '#8b5cf6',
+              amber: '#f59e0b',
+              rose: '#f43f5e'
+            },
+            dark: {
+              bg: '#090d16',
+              card: '#111827',
+              border: '#1f2937',
+              hover: '#1e293b'
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #090d16;
+      color: #f3f4f6;
+      font-family: 'Noto Sans KR', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .glass-card {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card-hover:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.25);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #818cf8 0%, #06b6d4 50%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-border {
+      position: relative;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(99,102,241,0.3), rgba(6,182,212,0.1));
+      padding: 1px;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f2937;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #374151;
+    }
+  </style>
+</head>
+<body class="min-h-screen antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- Background Glowing Orbs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-600/20 rounded-full blur-3xl animation-float"></div>
+    <div class="absolute top-1/3 -right-40 w-96 h-96 bg-accent-cyan/15 rounded-full blur-3xl animation-float" style="animation-delay: -2s;"></div>
+    <div class="absolute bottom-10 left-1/3 w-96 h-96 bg-accent-violet/15 rounded-full blur-3xl animation-float" style="animation-delay: -4s;"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 w-full border-b border-gray-800/80 glass-card">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="p-2 bg-brand-600/20 border border-brand-500/30 rounded-xl text-brand-400">
+          <i data-lucide="cpu" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="font-bold text-lg tracking-tight text-white flex items-center gap-2">
+            AI Pulse <span class="text-xs px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-400 border border-brand-500/30 font-mono">OCT 2026</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Navigation & Controls -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-400">
+        <a href="#overview" class="hover:text-brand-400 transition-colors">핵심 요약</a>
+        <a href="#terms" class="hover:text-brand-400 transition-colors">주요 학회</a>
+        <a href="#industry" class="hover:text-brand-400 transition-colors">산업 & 기술</a>
+        <a href="#academic" class="hover:text-brand-400 transition-colors">학술 & 연구</a>
+      </nav>
+
+      <div class="flex items-center space-x-3">
+        <button id="searchBtn" class="p-2 text-gray-400 hover:text-white bg-gray-800/50 rounded-lg border border-gray-700/50 transition-all hover:border-gray-600">
+          <i data-lucide="search" class="w-4 h-4"></i>
+        </button>
+        <a href="blog_ai_trends.md" download class="hidden sm:inline-flex items-center space-x-2 text-xs font-semibold px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg shadow-lg shadow-brand-600/30 transition-all">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          <span>Markdown 다운로드</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+
+    <!-- Hero Section -->
+    <section class="text-center space-y-6 pt-6 pb-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gray-800/80 border border-gray-700 text-xs font-medium text-gray-300 shadow-inner">
+        <span class="flex h-2 w-2 rounded-full bg-accent-emerald animate-pulse"></span>
+        최근 1개월 글로벌 AI 심층 리포트
+      </div>
+      
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        "듣고 말하는 AI에서 <br class="hidden sm:inline" />
+        <span class="gradient-text">행동하고 움직이는 AI</span>로"
+      </h1>
+      
+      <p class="max-w-3xl mx-auto text-base sm:text-lg text-gray-400 leading-relaxed font-normal">
+        글로벌 빅테크 산업 현장과 최상위 학회(NeurIPS, CVPR, arXiv)를 뜨겁게 달군 **최신 AI 트렌드**와 **핵심 연구 동향**을 전문가 시각에서 일목요연하게 분석합니다.
+      </p>
+
+      <!-- Key Stat Cards -->
+      <div id="overview" class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 text-left">
+        <div class="glass-card p-6 rounded-2xl border border-gray-800">
+          <div class="flex justify-between items-start mb-4">
+            <div class="p-3 bg-brand-500/10 rounded-xl text-brand-400 border border-brand-500/20">
+              <i data-lucide="bot" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xs font-mono text-brand-400 font-semibold uppercase tracking-wider">Shift 01</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-1">Agentic Autonomy</h3>
+          <p class="text-sm text-gray-400">단순 질의응답을 넘어 계획 수립과 복잡한 업무를 스스로 완료하는 에이전트 전환</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border border-gray-800">
+          <div class="flex justify-between items-start mb-4">
+            <div class="p-3 bg-accent-cyan/10 rounded-xl text-accent-cyan border border-accent-cyan/20">
+              <i data-lucide="boxes" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xs font-mono text-accent-cyan font-semibold uppercase tracking-wider">Shift 02</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-1">Physical Embodiment</h3>
+          <p class="text-sm text-gray-400">디지털 가상 세계를 벗어나 현실 물리학과 융합하는 로보틱스 및 VLA 모델 가속화</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border border-gray-800">
+          <div class="flex justify-between items-start mb-4">
+            <div class="p-3 bg-accent-emerald/10 rounded-xl text-accent-emerald border border-accent-emerald/20">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xs font-mono text-accent-emerald font-semibold uppercase tracking-wider">Shift 03</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-1">Inference & Control</h3>
+          <p class="text-sm text-gray-400">추론 시간 연산(Inference-time) 내실화 및 에이전트 자율권 통제/보안(Security) 정밀화</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Conferences Section -->
+    <section id="terms" class="space-y-6">
+      <div class="flex items-center space-x-3 mb-2">
+        <div class="p-2 bg-accent-violet/10 rounded-lg text-accent-violet border border-accent-violet/20">
+          <i data-lucide="book-open" class="w-5 h-5"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-white tracking-tight">주요 AI 학회 및 연구 플랫폼 용어 정리</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-accent-violet/40 transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-md bg-accent-violet/20 text-accent-violet text-xs font-mono font-semibold">NeurIPS</span>
+            <i data-lucide="award" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">신경정보처리시스템학회</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            컴퓨터 비전, 자연어 처리, 강화학습 등 AI 전 분야를 아우르는 **세계 최고 권위의 인공지능 학회**입니다.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-accent-cyan/40 transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-md bg-accent-cyan/20 text-accent-cyan text-xs font-mono font-semibold">CVPR</span>
+            <i data-lucide="eye" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">컴퓨터 비전 및 패턴 인식 학회</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            이미지/영상 인식, 3D 복원, 시각-언어 모델(VLM), 로보틱스 비전 분야에서 **가장 영향력 높은 최상위 학회**입니다.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-brand-400/40 transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-md bg-brand-500/20 text-brand-400 text-xs font-mono font-semibold">arXiv</span>
+            <i data-lucide="file-code-2" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">오픈 액세스 논문 플랫폼</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Google DeepMind, OpenAI, Meta 등 글로벌 명문 연구소가 최신 연구 결과를 학회 정식 공개 전 가장 먼저 공유하는 창구입니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Search Interactive Bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl glass-card border border-gray-800">
+      <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0">
+        <button data-filter="all" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-brand-600 text-white transition-all">전체보기</button>
+        <button data-filter="industry" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-gray-800 text-gray-400 hover:text-white transition-all">산업 & 기술 동향</button>
+        <button data-filter="academic" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-gray-800 text-gray-400 hover:text-white transition-all">학술 & 연구 흐름</button>
+      </div>
+      <div class="relative w-full sm:w-64">
+        <input type="text" id="searchInput" placeholder="키워드 검색 (예: 에이전트, PRM)..." class="w-full bg-gray-900 border border-gray-700 rounded-lg pl-9 pr-4 py-2 text-xs text-gray-200 placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-colors">
+        <i data-lucide="search" class="w-4 h-4 text-gray-500 absolute left-3 top-2.5"></i>
+      </div>
+    </div>
+
+    <!-- PART 1: Industry & Technology -->
+    <section id="industry" class="space-y-8 section-group" data-category="industry">
+      <div class="flex items-center justify-between border-b border-gray-800 pb-4">
+        <div class="flex items-center space-x-3">
+          <div class="p-2.5 bg-brand-500/10 rounded-xl text-brand-400 border border-brand-500/20">
+            <i data-lucide="briefcase" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-brand-400 font-bold uppercase tracking-wider">PART 1</span>
+            <h2 class="text-2xl font-bold text-white tracking-tight">산업 & 기술 트렌드 Top 5</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1 -->
+        <div class="trend-card glass-card glass-card-hover p-6 rounded-2xl flex flex-col justify-between" data-tags="에이전틱 AI 바이브 코딩 자율형 agent">
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-mono text-brand-400 font-bold bg-brand-500/10 px-2.5 py-1 rounded-md border border-brand-500/20">01. Agentic AI</span>
+              <i data-lucide="bot" class="w-5 h-5 text-gray-500"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">에이전틱 AI 중심 생태계 재편</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              단답형 답변 시대를 넘어, 목표를 주면 스스로 계획을 수립하고 복잡한 워크플로우를 완수하는 자율형 에이전트가 주류로 등극했습니다.
+            </p>
+            <ul class="text-xs text-gray-400 space-y-2 pt-2 border-t border-gray-800">
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5"></i>
+                <span>**플랫폼 전환:** 모델 성능 경합에서 에이전트 관제 인프라 생태계 구축으로 이동</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5"></i>
+                <span>**바이브 코딩:** 코딩 에이전트와의 능동 협업 및 업무 파이프라인 내재화</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="trend-card glass-card glass-card-hover p-6 rounded-2xl flex flex-col justify-between" data-tags="피지컬 AI 로보틱스 휴머노이드 엔비디아 옴니버스 physical">
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-mono text-accent-cyan font-bold bg-accent-cyan/10 px-2.5 py-1 rounded-md border border-accent-cyan/20">02. Physical AI</span>
+              <i data-lucide="armchair" class="w-5 h-5 text-gray-500"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">피지컬 AI 및 로보틱스 가속화</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              모니터 속에 머물던 AI가 온보드 추론 칩과 고성능 센서를 탑재하여 현실 물리 세계의 로봇 안으로 빠르게 확장되고 있습니다.
+            </p>
+            <ul class="text-xs text-gray-400 space-y-2 pt-2 border-t border-gray-800">
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-cyan shrink-0 mt-0.5"></i>
+                <span>**휴머노이드 투입:** 제조, 물류, 헬스케어 등 실무 현장 자율 로봇 배치</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-cyan shrink-0 mt-0.5"></i>
+                <span>**디지털 트윈:** 엔비디아 옴니버스 시뮬레이션을 활용한 가상 학습 시스템</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="trend-card glass-card glass-card-hover p-6 rounded-2xl flex flex-col justify-between" data-tags="소형 모델 SLM 오픈 웨이트 온디바이스 엣지">
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-mono text-accent-emerald font-bold bg-accent-emerald/10 px-2.5 py-1 rounded-md border border-accent-emerald/20">03. SLM & Inference</span>
+              <i data-lucide="zap" class="w-5 h-5 text-gray-500"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">소형 모델(SLM) & 저비용 추론</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              거대 모델 일변도에서 벗어나, 비용 효율적이고 빠른 오픈 웨이트 및 온디바이스 소형 AI 모델의 실속형 조합이 확산 중입니다.
+            </p>
+            <ul class="text-xs text-gray-400 space-y-2 pt-2 border-t border-gray-800">
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-emerald shrink-0 mt-0.5"></i>
+                <span>**하이브리드 아키텍처:** 프런티어 모델 + SLM 라우팅으로 서빙 비용 절감</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-emerald shrink-0 mt-0.5"></i>
+                <span>**온디바이스 AI:** 스마트폰/PC 내부 오프라인 초저지연 추론 구현</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="trend-card glass-card glass-card-hover p-6 rounded-2xl flex flex-col justify-between" data-tags="보안 윤리 통제 권한 agentic security">
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-mono text-accent-amber font-bold bg-accent-amber/10 px-2.5 py-1 rounded-md border border-accent-amber/20">04. Safety & Governance</span>
+              <i data-lucide="shield-alert" class="w-5 h-5 text-gray-500"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">에이전트 통제 및 보안 리스크</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              스스로 판단하여 행동하는 권한을 갖게 됨에 따라 안전성 검증 및 OS 차원의 접근 권한 관리가 출시 표준이 되었습니다.
+            </p>
+            <ul class="text-xs text-gray-400 space-y-2 pt-2 border-t border-gray-800">
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-amber shrink-0 mt-0.5"></i>
+                <span>**권한 통제:** 로컬 파일 및 네트워크 자격 증명 보안 정책 강화</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-amber shrink-0 mt-0.5"></i>
+                <span>**실시예 규제:** 통제 이탈 시 아무리 성능이 높아도 출시 보류</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="trend-card glass-card glass-card-hover p-6 rounded-2xl flex flex-col justify-between md:col-span-2 lg:col-span-1" data-tags="인프라 전력 데이터센터 투자 리스크 병목">
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-mono text-accent-rose font-bold bg-accent-rose/10 px-2.5 py-1 rounded-md border border-accent-rose/20">05. Infrastructure Bottleneck</span>
+              <i data-lucide="server" class="w-5 h-5 text-gray-500"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">AI 인프라 병목과 금융 리스크</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              모델 대형화와 가동률 급증으로 인한 전력 공급 부족과 데이터센터 건설 모라토리엄이 구체적 산업 위험 요인으로 대두되었습니다.
+            </p>
+            <ul class="text-xs text-gray-400 space-y-2 pt-2 border-t border-gray-800">
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-rose shrink-0 mt-0.5"></i>
+                <span>**전력 한계:** 지역 사회 데이터센터 건립 반대 및 에너지 부족</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-rose shrink-0 mt-0.5"></i>
+                <span>**수익성 검증:** 대규모 차입금 기반 설비 투자에 대한 신중론</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PART 2: Academic & Research -->
+    <section id="academic" class="space-y-8 section-group" data-category="academic">
+      <div class="flex items-center justify-between border-b border-gray-800 pb-4">
+        <div class="flex items-center space-x-3">
+          <div class="p-2.5 bg-accent-cyan/10 rounded-xl text-accent-cyan border border-accent-cyan/20">
+            <i data-lucide="flask-conical" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-accent-cyan font-bold uppercase tracking-wider">PART 2</span>
+            <h2 class="text-2xl font-bold text-white tracking-tight">학술 & 연구 동향 Top 5</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Research 1 -->
+        <div class="trend-card glass-card glass-card-hover p-6 rounded-2xl space-y-4" data-tags="추론 시간 연산 PRM o1 DeepSeek R1 MCTS causal evaluation">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-mono text-accent-cyan font-bold bg-accent-cyan/10 px-2.5 py-1 rounded-md border border-accent-cyan/20">Paper Trend 01</span>
+            <i data-lucide="brain-circuit" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Inference-time Compute & PRM</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            o1, DeepSeek R1 이후 부상한 '생각하는 AI'의 핵심인 Process Reward Model(PRM)의 오류 전파 파악 및 내실화 연구가 활발합니다.
+          </p>
+          <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-1">
+            <div class="font-semibold text-accent-cyan">주요 착안점</div>
+            <p class="text-gray-400">단순 MCTS 한계를 극복하기 위해 원인 분석 평가(Causal Evaluation) 기법 도입</p>
+          </div>
+        </div>
+
+        <!-- Research 2 -->
+        <div class="trend-card glass-card glass-card-hover p-6 rounded-2xl space-y-4" data-tags="다중 에이전트 인지적 전 단계 epistemic action worse together">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-mono text-accent-violet font-bold bg-accent-violet/10 px-2.5 py-1 rounded-md border border-accent-violet/20">Paper Trend 02</span>
+            <i data-lucide="users" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Multi-Agent Control & Epistemic Action</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            여러 에이전트가 함께 작업할 때 성능이 오르지 않고 충돌하는 현상(*Worse Together*)을 방지하기 위한 통제 프레임워크 연구입니다.
+          </p>
+          <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-1">
+            <div class="font-semibold text-accent-violet">주요 착안점</div>
+            <p class="text-gray-400">의사결정 전 가설을 검증하고 정보를 모으는 **인지적 전 단계** 수학적 모델링</p>
+          </div>
+        </div>
+
+        <!-- Research 3 -->
+        <div class="trend-card glass-card glass-card-hover p-6 rounded-2xl space-y-4" data-tags="에이전트 보안 백도어 lora expert quarantine 보안 연구">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-mono text-accent-emerald font-bold bg-accent-emerald/10 px-2.5 py-1 rounded-md border border-accent-emerald/20">Paper Trend 03</span>
+            <i data-lucide="lock" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">Agentic Security & Expert Quarantine</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            실제 OS/네트워크 자율 접근에 따라 발생하는 취약점을 차단하기 위해 미세조정(LoRA) 모델 내 백도어 격리 기법을 다룹니다.
+          </p>
+          <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-1">
+            <div class="font-semibold text-accent-emerald">주요 착안점</div>
+            <p class="text-gray-400">영공간 투영(Null-Space)을 통해 악의적 전문가 모듈을 자율적으로 격리 및 정화</p>
+          </div>
+        </div>
+
+        <!-- Research 4 -->
+        <div class="trend-card glass-card glass-card-hover p-6 rounded-2xl space-y-4" data-tags="VLA 시각 언어 행동 libero-para 로봇 강건성">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-mono text-accent-amber font-bold bg-accent-amber/10 px-2.5 py-1 rounded-md border border-accent-amber/20">Paper Trend 04</span>
+            <i data-lucide="compass" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">VLA Robustness & Safety Control</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            시각-언어-행동(VLA) 모델이 노이즈나 표현 변화 등 미세 변수에 흔들리지 않도록 정밀히 검증하는 진단 벤치마크가 구축되었습니다.
+          </p>
+          <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-1">
+            <div class="font-semibold text-accent-amber">주요 착안점</div>
+            <p class="text-gray-400">LIBERO-Para 벤치마크 기반 선호도 가이드(Preference-Guided) 강화학습 적용</p>
+          </div>
+        </div>
+
+        <!-- Research 5 -->
+        <div class="trend-card glass-card glass-card-hover p-6 rounded-2xl space-y-4 md:col-span-2 lg:col-span-1" data-tags="AI for science 과학 진화 알고리즘 alphaevolve 단백질 기후">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-mono text-brand-400 font-bold bg-brand-500/10 px-2.5 py-1 rounded-md border border-brand-500/20">Paper Trend 05</span>
+            <i data-lucide="atom" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">AI for Science & Evolutionary Search</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            LLM을 텍스트 생성을 넘어 진화 알고리즘과 결합하여, 기후·단백질·전력망 최적화 알고리즘을 발굴하는 연구가 급부상하고 있습니다.
+          </p>
+          <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 text-xs text-gray-300 space-y-1">
+            <div class="font-semibold text-brand-400">주요 착안점</div>
+            <p class="text-gray-400">가설 제시 후 자율적인 실험 검증 루프를 구동하는 진화형 AI 아키텍처</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Executive Summary / Takeaway Banner -->
+    <section class="gradient-border">
+      <div class="bg-gray-950/90 rounded-[15px] p-8 space-y-6">
+        <div class="flex items-center space-x-3">
+          <div class="p-2 bg-brand-500/20 rounded-lg text-brand-400">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white">요약 및 핵심 시사점</h3>
+        </div>
+        <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+          최근 AI 기술의 3대 핵심 키워드는 **"자율성(Autonomy)"**, **"실물화(Physicality)"**, 그리고 **"안전과 효율(Safety & Efficiency)"**입니다.
+          AI의 평가 기준은 <span class="text-brand-400 font-semibold">'얼마나 유창하게 대화하는가'</span>에서 <span class="text-accent-cyan font-semibold">'실제 비즈니스 프로세스와 물리학적 현실에서 얼마나 안전하게 행동하는가'</span>로 완전히 전환되었습니다.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <span class="px-3 py-1.5 rounded-full bg-gray-900 border border-gray-800 text-xs text-gray-400 font-mono">#AgenticAI</span>
+          <span class="px-3 py-1.5 rounded-full bg-gray-900 border border-gray-800 text-xs text-gray-400 font-mono">#PhysicalAI</span>
+          <span class="px-3 py-1.5 rounded-full bg-gray-900 border border-gray-800 text-xs text-gray-400 font-mono">#SLM_Hybrid</span>
+          <span class="px-3 py-1.5 rounded-full bg-gray-900 border border-gray-800 text-xs text-gray-400 font-mono">#AgenticSecurity</span>
+          <span class="px-3 py-1.5 rounded-full bg-gray-900 border border-gray-800 text-xs text-gray-400 font-mono">#InferenceCompute</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800/80 mt-20 py-10 bg-gray-950/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-500 space-y-3">
+      <p>본 문서의 내용은 2026년 최근 1달간의 최신 AI 뉴스, 학회(NeurIPS, CVPR) 및 arXiv 논문 동향 분석을 기반으로 제작되었습니다.</p>
+      <p class="font-mono text-gray-600">© 2026 AI Pulse Report. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Lucide Icon Initialization & Filtering Script -->
+  <script>
+    lucide.createIcons();
+
+    // Search and Filter Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const searchInput = document.getElementById('searchInput');
+    const trendCards = document.querySelectorAll('.trend-card');
+    const sectionGroups = document.querySelectorAll('.section-group');
+
+    let currentFilter = 'all';
+    let currentQuery = '';
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-brand-600', 'text-white');
+          b.classList.add('bg-gray-800', 'text-gray-400');
+        });
+        btn.classList.remove('bg-gray-800', 'text-gray-400');
+        btn.classList.add('bg-brand-600', 'text-white');
+
+        currentFilter = btn.getAttribute('data-filter');
+        applyFilters();
+      });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      currentQuery = e.target.value.toLowerCase().trim();
+      applyFilters();
+    });
+
+    function applyFilters() {
+      sectionGroups.forEach(section => {
+        const category = section.getAttribute('data-category');
+        const matchesCategory = (currentFilter === 'all' || currentFilter === category);
+        
+        let visibleInSection = 0;
+        const cardsInSection = section.querySelectorAll('.trend-card');
+
+        cardsInSection.forEach(card => {
+          const tags = card.getAttribute('data-tags') ? card.getAttribute('data-tags').toLowerCase() : '';
+          const textContent = card.textContent.toLowerCase();
+          const matchesSearch = currentQuery === '' || tags.includes(currentQuery) || textContent.includes(currentQuery);
+
+          if (matchesCategory && matchesSearch) {
+            card.style.display = 'flex';
+            visibleInSection++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (visibleInSection > 0) {
+          section.style.display = 'block';
+        } else {
+          section.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
